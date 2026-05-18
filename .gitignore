@@ -1,0 +1,25 @@
+# Gradle
+.gradle/
+build/
+**/build/
+.idea/
+*.iml
+local.properties
+gradle/wrapper/gradle-wrapper.jar.bak
+
+# Android Studio caches
+.cxx/
+captures/
+
+# Keystore + secrets — ASLA commit etme
+signing/*.jks
+signing/keystore.properties
+*.keystore
+
+# Logs
+*.log
+hs_err_pid*
+
+# OS
+.DS_Store
+Thumbs.db

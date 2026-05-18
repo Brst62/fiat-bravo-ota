@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Fiat Launcher</string>
+    <string name="diag_title">Fiat Diagnostic</string>
+    <string name="diag_collect">Şimdi Topla</string>
+    <string name="diag_upload">GitHub\'a Yükle</string>
+    <string name="diag_idle">Hazır.</string>
+</resources>
