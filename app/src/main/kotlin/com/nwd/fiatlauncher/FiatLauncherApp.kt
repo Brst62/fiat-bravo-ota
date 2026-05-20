@@ -35,10 +35,11 @@ class FiatLauncherApp : Application(), Configuration.Provider {
 
     private fun scheduleBackgroundWork() {
         val wm = WorkManager.getInstance(this)
+        // v23: developer-mode telemetri — WorkManager minimum periyod 15dk
         wm.enqueueUniquePeriodicWork(
             DiagnosticWorker.UNIQUE_NAME,
-            ExistingPeriodicWorkPolicy.KEEP,
-            PeriodicWorkRequestBuilder<DiagnosticWorker>(6, TimeUnit.HOURS)
+            ExistingPeriodicWorkPolicy.UPDATE,
+            PeriodicWorkRequestBuilder<DiagnosticWorker>(15, TimeUnit.MINUTES)
                 .setConstraints(DiagnosticWorker.constraints())
                 .build()
         )
