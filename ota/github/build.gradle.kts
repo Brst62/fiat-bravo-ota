@@ -30,6 +30,7 @@ dependencies {
     implementation(libs.androidx.work.runtime)
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.okhttp)
+    implementation(libs.retrofit)
     implementation(libs.timber)
 
     implementation(libs.hilt.android)

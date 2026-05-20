@@ -1,5 +1,6 @@
 package com.nwd.diagnostic.collector
 
+import com.nwd.diagnostic.uploader.TelemetryArtifact
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
@@ -63,7 +64,7 @@ data class CrashEntry(
 
 @JsonClass(generateAdapter = true)
 data class CollectedArtifact(
-    val path: String,         // tar.gz dosya yolu
-    val sizeBytes: Long,
+    override val path: String,         // tar.gz dosya yolu
+    override val sizeBytes: Long,
     val report: DiagnosticReport,
-)
+) : TelemetryArtifact
