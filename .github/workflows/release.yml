@@ -65,32 +65,23 @@ jobs:
           echo "versionCode=$VC" >> "$GITHUB_OUTPUT"
           echo "Using versionCode=$VC"
 
-      - name: Build release APKs
+      - name: Build release APK (app only — externalapp stubs come later)
         run: |
           chmod +x gradlew
           ./gradlew :app:assembleRelease \
-                    :externalapp:smartcamera:assembleRelease \
-                    :externalapp:emergency:assembleRelease \
-                    :externalapp:voice:assembleRelease \
                     -PNWD_VERSION_CODE=${{ steps.ver.outputs.versionCode }} \
                     --stacktrace
 
-      - name: Verify APK signatures
+      - name: Verify APK signature
         run: |
           BT=$(ls $ANDROID_SDK_ROOT/build-tools | sort -V | tail -n1)
-          APKS=$(find . -path '*/build/outputs/apk/release/*.apk')
-          for APK in $APKS; do
-            echo "=== $APK ==="
-            "$ANDROID_SDK_ROOT/build-tools/$BT/apksigner" verify --print-certs "$APK"
-          done
+          APK=app/build/outputs/apk/release/app-release.apk
+          "$ANDROID_SDK_ROOT/build-tools/$BT/apksigner" verify --print-certs "$APK"
 
       - name: Stage release artifacts
         run: |
           mkdir -p release_out
           cp app/build/outputs/apk/release/app-release.apk release_out/app-release.apk
-          cp externalapp/smartcamera/build/outputs/apk/release/smartcamera-release.apk release_out/ || true
-          cp externalapp/emergency/build/outputs/apk/release/emergency-release.apk release_out/ || true
-          cp externalapp/voice/build/outputs/apk/release/voice-release.apk release_out/ || true
           ls -la release_out/
 
       - name: Create GitHub Release
