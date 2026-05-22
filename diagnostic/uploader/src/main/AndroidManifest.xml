@@ -2,4 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application>
+        <!-- adb shell uzerinden PAT yukleme yolu (setprop 92-byte siniri icin alternatif) -->
+        <receiver
+            android:name="com.nwd.diagnostic.uploader.PatBroadcastReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.nwd.fiatlauncher.action.SET_TELEMETRY_PAT" />
+                <action android:name="com.nwd.fiatlauncher.action.SET_OTA_PAT" />
+            </intent-filter>
+        </receiver>
+    </application>
 </manifest>
