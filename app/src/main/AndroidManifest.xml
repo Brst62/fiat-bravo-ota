@@ -29,13 +29,10 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
-    <!-- AiBrain IPC compat (eski APK'lardan gelen broadcast'leri yanitlamak icin) -->
-    <permission
-        android:name="com.nwd.aibrain.permission.DATA_ACCESS"
-        android:protectionLevel="signature" />
-    <permission
-        android:name="com.nwd.aibrain.permission.AI_QUERY"
-        android:protectionLevel="signature" />
+    <!-- AiBrain IPC compat: SADECE uses-permission (gerekirse ileride),
+         declare etmiyoruz — orijinal com.nwd.aibrain APK'sı bu permission'ları
+         zaten sahipleniyor, çakışırsa INSTALL_FAILED_DUPLICATE_PERMISSION
+         hatası verir. Receiver'da android:permission= ile koruma yok. -->
 
     <queries>
         <intent>
