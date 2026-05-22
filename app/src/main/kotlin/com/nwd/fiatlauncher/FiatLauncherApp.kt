@@ -28,7 +28,8 @@ class FiatLauncherApp : Application(), Configuration.Provider {
 
     override fun onCreate() {
         super.onCreate()
-        if (BuildConfig.DEBUG) Timber.plant(Timber.DebugTree())
+        // Release'te de logcat'e yaz — geliştirme aşaması, observability gerekli
+        Timber.plant(Timber.DebugTree())
         secretBootstrap.importFromSystemProps()
         scheduleBackgroundWork()
     }
